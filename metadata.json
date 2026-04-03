@@ -1,0 +1,5 @@
+{
+  "name": "DeepNovel AI",
+  "description": "A reasoning-first novel writing tool prototype based on the DeepSeek architecture specification.",
+  "requestFramePermissions": []
+}
