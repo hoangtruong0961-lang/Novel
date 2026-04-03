@@ -13,8 +13,8 @@ export default function App() {
   const [isInitialized, setIsInitialized] = useState(false);
   
   // Settings State
-  const [apiKeys, setApiKeys] = useState({ deepseek: '', gemini: '' });
-  const [activeModel, setActiveModel] = useState<'deepseek' | 'gemini'>('gemini');
+  const [apiKeys, setApiKeys] = useState({ deepseek: '' });
+  const [activeModel, setActiveModel] = useState<string>('deepseek-chat');
   const [zoomLevel, setZoomLevel] = useState(100);
 
   // Sessions State
@@ -30,8 +30,11 @@ export default function App() {
     const savedModel = localStorage.getItem('deepnovel_active_model');
     const savedZoom = localStorage.getItem('deepnovel_zoom_level');
     
-    if (savedKeys) setApiKeys(JSON.parse(savedKeys));
-    if (savedModel) setActiveModel(savedModel as 'deepseek' | 'gemini');
+    if (savedKeys) {
+      const keys = JSON.parse(savedKeys);
+      setApiKeys({ deepseek: keys.deepseek || '' });
+    }
+    if (savedModel) setActiveModel(savedModel);
     if (savedZoom) setZoomLevel(Number(savedZoom));
   }, []);
 
